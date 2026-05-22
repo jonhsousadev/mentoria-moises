@@ -1,0 +1,14 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+  "skills": {
+    "paths": [".opencode/skills"]
+  },
+  "command": {
+    // Comando de exemplo.
+    "hello-world": {
+      "description": "Test command: greet and list files in the working directory",
+      "template": "Say hello and list all files in the current working directory using the available tools."
+    }
+  }
+}
