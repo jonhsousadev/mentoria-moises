@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Mentoria — Moisés Sampaio | Plano de 1 Ano</title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="css/mattropolis.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+
+    <style>
+      @media print {
+        html.print-pdf body {
+          background: #020617 !important;
+        }
+        html.print-pdf .reveal .slide-background {
+          background: #020617 !important;
+        }
+        html.print-pdf .reveal .slides section {
+          background-color: #020617 !important;
+          color: #fff !important;
+        }
+        html.print-pdf .reveal .slides section h1,
+        html.print-pdf .reveal .slides section h2,
+        html.print-pdf .reveal .slides section h3,
+        html.print-pdf .reveal .slides section h4,
+        html.print-pdf .reveal .slides section h5,
+        html.print-pdf .reveal .slides section p,
+        html.print-pdf .reveal .slides section li,
+        html.print-pdf .reveal .slides section span {
+          color: #fff !important;
+        }
+        html.print-pdf .reveal .slides section a {
+          color: #e7ad52 !important;
+        }
+        html.print-pdf * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+      }
+
+.slide-content::after {
+  display: none !important;
+}
+
+.slide-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #f97316, #22c55e);
+  z-index: 10;
+  pointer-events: none;
+}
+    </style>
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "*");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		};
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}
+		}
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "*");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+		};
+	</script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+<!-- SLIDE 1: CAPA -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+.reveal .slides section {
+  padding: 0 !important;
+  background-color: #020617 !important;
+  overflow: hidden !important;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.reveal .slides section.present { opacity: 1 !important; }
+.reveal .slides section:not(.present) { opacity: 0 !important; }
+
+.slide-content {
+  width: 100%; height: 100%;
+  padding: 40px 60px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  position: relative;
+  overflow-y: visible; overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #00d4ff #0f172a;
+  z-index: 1;
+}
+
+.reveal h1 {
+  font-family: 'Urbanist', sans-serif !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  line-height: 1.1 !important;
+  font-size: 74px !important;
+}
+
+.reveal h2 {
+  font-family: 'Urbanist', sans-serif !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  border-left: 10px solid #00d4ff;
+  padding-left: 30px !important;
+  margin-bottom: 20px !important;
+  font-size: 56px !important;
+}
+
+.reveal h3 {
+  font-family: 'Urbanist', sans-serif !important;
+  font-weight: 700 !important;
+  color: #f97316 !important;
+  font-size: 37px !important;
+  margin-bottom: 16px !important;
+}
+
+.reveal p, .reveal li {
+  font-family: 'Urbanist', sans-serif !important;
+  color: #94a3b8 !important;
+  font-size: 29px !important;
+  line-height: 1.5 !important;
+}
+
+.reveal ul { list-style: none !important; padding-left: 0 !important; }
+.reveal ul li::before { content: '▸ ' !important; color: #00d4ff !important; font-weight: bold !important; }
+
+.green { color: #22c55e !important; }
+.orange { color: #f97316 !important; }
+.blue { color: #00d4ff !important; }
+.cyan { color: #06b6d4 !important; }
+.red { color: #ef4444 !important; }
+.mono { font-family: 'JetBrains Mono', monospace !important; text-transform: uppercase; letter-spacing: 3px; }
+.divider { width: 100%; height: 1px; background: #1e293b; margin: 20px 0; }
+
+.slide-content::after { display: none !important; }
+
+section > div:first-child::after {
+  content: '';
+  position: absolute;
+  bottom: 30px; left: 60px;
+  width: 100px; height: 6px;
+  background: linear-gradient(90deg, #00d4ff, #f97316);
+  z-index: 10; pointer-events: none;
+}
+
+.reveal .fragment { opacity: 0; transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+.reveal .fragment.visible { opacity: 1; }
+.reveal .fragment.fade-up { transform: translateY(15px); }
+.reveal .fragment.visible.fade-up { transform: translateY(0); }
+
+.unit-card {
+  background: #0f172a !important;
+  border: 2px solid #1e293b !important;
+  border-left: 4px solid #00d4ff !important;
+  border-radius: 8px !important;
+  padding: 16px 20px !important;
+  margin-bottom: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.reveal .slides section .unit-card:hover {
+  border-color: #00d4ff !important;
+  transform: translateX(5px) !important;
+}
+
+.highlight-box { padding: 16px; background: #0f172a; border-radius: 8px; border-left: 4px solid #00d4ff; margin-top: 20px; }
+.highlight-box-orange { padding: 16px; background: #0f172a; border-radius: 8px; border-left: 4px solid #f97316; margin-top: 20px; }
+.highlight-box-green { padding: 16px; background: #0f172a; border-radius: 8px; border-left: 4px solid #22c55e; margin-top: 20px; }
+.highlight-box-red { padding: 16px; background: #0f172a; border-radius: 8px; border-left: 4px solid #ef4444; margin-top: 20px; }
+
+.codebox {
+  background: #0f172a !important;
+  border: 2px solid #1e293b !important;
+  border-radius: 8px !important;
+  padding: 18px 20px !important;
+  margin: 16px 0 !important;
+  text-align: left !important;
+  width: 100%; box-sizing: border-box;
+}
+
+.codebox pre {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  color: #e2e8f0 !important;
+  margin: 0 !important;
+  white-space: pre !important;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 850px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; max-width: 850px; }
+</style>
+
+<div class="slide-content" style="align-items: center !important; text-align: center !important; justify-content: center !important;">
+  <div class="mono blue" style="font-size: 24px; margin-bottom: 24px;">MENTORIA · PLANO DE DESENVOLVIMENTO</div>
+  <h1 style="font-size: 41px !important;">DE JUNIOR A<br><span class="blue" style="font-size: 54px !important;">ARQUITETO</span></h1>
+  <div style="height: 2px; width: 100px; background: linear-gradient(90deg, #00d4ff, #f97316); margin: 40px 0;"></div>
+  <div class="mono" style="font-size: 16px; color: #475569;">12 MESES · 4 TRILHAS · 1 OBJETIVO</div>
+  <div class="mono" style="font-size: 14px; color: #475569; margin-top: 10px;">MOISÉS SAMPAIO · OUTUBRO 2026 → OUTUBRO 2027</div>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 2: ROTEIRO -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono blue" style="font-size: 16px; margin-bottom: 12px;">ROTEIRO DA MENTORIA</div>
+  <h2>O que <span>Vamos Ver</span>?</h2>
+  <div class="unit-card fragment fade-up">
+    <p style="margin: 0;"><strong style="color: #00d4ff;">1.</strong> O mercado: 3 vagas reais analisadas</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #ef4444 !important;">
+    <p style="margin: 0;"><strong style="color: #ef4444;">2.</strong> O que as vagas exigem (padrões comuns)</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+    <p style="margin: 0;"><strong style="color: #22c55e;">3.</strong> Onde você está e o gap até o alvo</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #f97316 !important;">
+    <p style="margin: 0;"><strong style="color: #f97316;">4.</strong> O plano de 12 meses em 4 trimestres</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #06b6d4 !important;">
+    <p style="margin: 0;"><strong style="color: #06b6d4;">5.</strong> Métricas, portfólio e próximo passo</p>
+  </div>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 3: O MERCADO -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono orange" style="font-size: 16px; margin-bottom: 12px;">ANÁLISE DE MERCADO — SETEMBRO/2026:</div>
+  <h2>3 Vagas <span>Reais</span></h2>
+  <div class="unit-card fragment fade-up">
+    <p style="margin: 0;"><strong style="color: #00d4ff;">Sensedia</strong> — Arquiteto de Software PEOP · Campinas/remoto · APIs, integração, AI Gateway</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #f97316 !important;">
+    <p style="margin: 0;"><strong style="color: #f97316;">SIS Innov &amp; Tech</strong> — Arquiteto de Soluções IA/Copilot · Remoto · SharePoint, OneLake, inglês</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+    <p style="margin: 0;"><strong style="color: #22c55e;">CI&amp;T</strong> — Data Architect IA/Automação · Campinas · Python, dados, agentes</p>
+  </div>
+  <p class="fragment fade-up" style="font-size: 18px !important; margin-top: 4px;">💡 As 3 pedem o mesmo combo: <strong style="color: #fff;">IA Generativa + APIs + Cloud</strong>. Não é tendência — é requisito.</p>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 4: PADRÕES COMUNS -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono blue" style="font-size: 16px; margin-bottom: 12px;">INTERSEÇÃO DAS 3 VAGAS:</div>
+  <h2>Padrões <span>Comuns</span></h2>
+  <div class="grid-2">
+    <div class="unit-card fragment fade-up">
+      <p style="margin: 0; font-size: 20px;"><strong style="color: #00d4ff;">IA Generativa / LLMs</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 15px;">Obrigatório em todas. Não diferencial — requisito.</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #f97316 !important;">
+      <p style="margin: 0; font-size: 20px;"><strong style="color: #f97316;">Arquitetura de APIs</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 15px;">REST, OpenAPI, contratos, versionamento.</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+      <p style="margin: 0; font-size: 20px;"><strong style="color: #22c55e;">Cloud (AWS/Azure)</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 15px;">Infra, serviços gerenciados, IaC.</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #ef4444 !important;">
+      <p style="margin: 0; font-size: 20px;"><strong style="color: #ef4444;">RAG &amp; Agentes</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 15px;">Grounding, busca semântica, multiagentes.</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #06b6d4 !important;">
+      <p style="margin: 0; font-size: 20px;"><strong style="color: #06b6d4;">Governança &amp; Segurança</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 15px;">Classificação, OAuth, rastreabilidade.</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #a855f7 !important;">
+      <p style="margin: 0; font-size: 20px;"><strong style="color: #a855f7;">Comunicação &amp; Influência</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 15px;">Traduzir técnica para negócio. Mentoria.</p>
+    </div>
+  </div>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 5: ONDE VOCÊ ESTÁ -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono green" style="font-size: 16px; margin-bottom: 12px;">PONTO DE PARTIDA:</div>
+  <h2>Base que <span style="color: #22c55e;">Você Tem</span> <span style="font-size: 22px !important; color: #64748b !important; font-weight: 400 !important; text-transform: none !important;">(o que deveria ter)</span></h2>
+  <div class="grid-2">
+    <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #22c55e;">Web/Mobile</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">HTML, CSS, React/Vue, Node+Express, Python, Flutter, REST, CRUD, Git</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #22c55e;">Teste de Software</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">Jest, TDD, caixa-preta/branca, cobertura, casos de teste</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #22c55e;">Lógica de Programação</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">Pensamento computacional, pseudocódigo, C, estruturas básicas</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #22c55e;">Interação Humano-Computador</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">Usabilidade, PACT, engenharia cognitiva, design thinking</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size: 18px !important; margin-top: 8px;">✅ Você tem <strong style="color: #fff;">fundamentos sólidos</strong>. O que falta é a camada de <strong style="color: #f97316;">arquitetura + cloud + IA</strong>.</p>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 6: O GAP -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content" style="align-items: center !important; text-align: center !important; justify-content: center !important;">
+  <div class="mono orange" style="font-size: 18px; margin-bottom: 20px;">A DISTÂNCIA:</div>
+  <h2 style="font-size: 43px !important; border-left: none !important; padding-left: 0 !important;">O <span class="blue">Gap</span> até as Vagas</h2>
+  <div style="height: 2px; width: 100px; background: linear-gradient(90deg, #00d4ff, #f97316); margin: 30px 0;"></div>
+  <div class="grid-3" style="max-width: 860px;">
+    <div class="unit-card fragment fade-up" style="text-align: center; border-left-color: #22c55e !important;">
+      <p style="margin: 0; font-size: 34px; color: #22c55e !important;">✓</p>
+      <p style="margin: 4px 0 0 0; font-size: 16px;"><strong>Fundamentos</strong><br><span style="font-size: 13px;">Lógica, web, testes</span></p>
+    </div>
+    <div class="unit-card fragment fade-up" style="text-align: center; border-left-color: #ef4444 !important;">
+      <p style="margin: 0; font-size: 34px; color: #ef4444 !important;">✗</p>
+      <p style="margin: 4px 0 0 0; font-size: 16px;"><strong>Cloud + APIs</strong><br><span style="font-size: 13px;">AWS/Azure, microsserviços</span></p>
+    </div>
+    <div class="unit-card fragment fade-up" style="text-align: center; border-left-color: #ef4444 !important;">
+      <p style="margin: 0; font-size: 34px; color: #ef4444 !important;">✗</p>
+      <p style="margin: 4px 0 0 0; font-size: 16px;"><strong>IA Generativa</strong><br><span style="font-size: 13px;">LLMs, RAG, agentes</span></p>
+    </div>
+    <div class="unit-card fragment fade-up" style="text-align: center; border-left-color: #ef4444 !important;">
+      <p style="margin: 0; font-size: 34px; color: #ef4444 !important;">✗</p>
+      <p style="margin: 4px 0 0 0; font-size: 16px;"><strong>Python / Dados</strong><br><span style="font-size: 13px;">Pipelines, SQL/NoSQL</span></p>
+    </div>
+    <div class="unit-card fragment fade-up" style="text-align: center; border-left-color: #ef4444 !important;">
+      <p style="margin: 0; font-size: 34px; color: #ef4444 !important;">✗</p>
+      <p style="margin: 4px 0 0 0; font-size: 16px;"><strong>DevOps / IaC</strong><br><span style="font-size: 13px;">Docker, K8s, Terraform</span></p>
+    </div>
+    <div class="unit-card fragment fade-up" style="text-align: center; border-left-color: #f97316 !important;">
+      <p style="margin: 0; font-size: 34px; color: #f97316 !important;">~</p>
+      <p style="margin: 4px 0 0 0; font-size: 16px;"><strong>Soft Skills</strong><br><span style="font-size: 13px;">IHC ajuda, falta negócio</span></p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size: 17px !important; margin-top: 16px;">🎯 Objetivo: <strong style="color: #fff;">junior/ pleno em arquitetura de soluções com IA</strong> em 12 meses.</p>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 7: VISÃO DO PLANO -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content" style="align-items: center !important; text-align: center !important; justify-content: center !important;">
+  <div class="mono blue" style="font-size: 18px; margin-bottom: 20px;">O PLANO:</div>
+  <h2 style="font-size: 43px !important; border-left: none !important; padding-left: 0 !important;"><span class="blue">4 Trilhas</span> · 12 Meses</h2>
+  <div style="height: 2px; width: 100px; background: linear-gradient(90deg, #00d4ff, #f97316); margin: 24px 0;"></div>
+  <div class="grid-2" style="max-width: 860px;">
+    <div class="unit-card fragment fade-up" style="text-align: center; border-left-color: #22c55e !important;">
+      <p style="margin: 0; font-size: 17px;"><strong style="color: #22c55e;">Q1 · M1-3</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">Fundamentos Cloud + APIs<br><em style="color: #64748b;">AWS, Docker, REST avançado</em></p>
+    </div>
+    <div class="unit-card fragment fade-up" style="text-align: center; border-left-color: #00d4ff !important;">
+      <p style="margin: 0; font-size: 17px;"><strong style="color: #00d4ff;">Q2 · M4-6</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">IA Generativa + RAG<br><em style="color: #64748b;">LLMs, embeddings, agentes</em></p>
+    </div>
+    <div class="unit-card fragment fade-up" style="text-align: center; border-left-color: #f97316 !important;">
+      <p style="margin: 0; font-size: 17px;"><strong style="color: #f97316;">Q3 · M7-9</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">Arquitetura + DevOps<br><em style="color: #64748b;">Microsserviços, K8s, IaC</em></p>
+    </div>
+    <div class="unit-card fragment fade-up" style="text-align: center; border-left-color: #a855f7 !important;">
+      <p style="margin: 0; font-size: 17px;"><strong style="color: #a855f7;">Q4 · M10-12</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">Portfólio + Carreira<br><em style="color: #64748b;">Projetos, LinkedIn, entrevistas</em></p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size: 16px !important; margin-top: 14px;">⏱️ Dedicação: <strong style="color: #fff;">10-15h/semana</strong> · Cada trimestre tem um projeto prático.</p>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 8: Q1 -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono" style="font-size: 16px; margin-bottom: 12px; color: #22c55e;">Q1 · MÊS 1-3 — FUNDAÇÃO:</div>
+  <h2>Cloud + <span style="color: #22c55e;">APIs</span></h2>
+  <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+    <p style="margin: 0;"><strong style="color: #22c55e;">AWS</strong> — EC2, S3, Lambda, RDS. Certificação Cloud Practitioner.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+    <p style="margin: 0;"><strong style="color: #22c55e;">Docker</strong> — containers, Dockerfile, compose. Publicar imagem no ECR.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+    <p style="margin: 0;"><strong style="color: #22c55e;">REST Avançado</strong> — OpenAPI, versionamento, idempotência, paginação, erros.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+    <p style="margin: 0;"><strong style="color: #22c55e;">Node + Express</strong> — refazer uma API REST com boas práticas.</p>
+  </div>
+  <div class="highlight-box-green fragment fade-up">
+    <p style="margin: 0; font-size: 17px !important;">📦 <strong style="color: #22c55e;">Projeto Q1:</strong> API REST documentada (OpenAPI) + Dockerfile + deploy na AWS.</p>
+  </div>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 9: Q2 -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono" style="font-size: 16px; margin-bottom: 12px; color: #00d4ff;">Q2 · MÊS 4-6 — IA GENERATIVA:</div>
+  <h2>LLMs + <span style="color: #00d4ff;">RAG</span></h2>
+  <div class="unit-card fragment fade-up">
+    <p style="margin: 0;"><strong style="color: #00d4ff;">Python</strong> — migrar do JS. FastAPI, pandas, requests. Sintaxe em 2 semanas.</p>
+  </div>
+  <div class="unit-card fragment fade-up">
+    <p style="margin: 0;"><strong style="color: #00d4ff;">APIs de IA</strong> — OpenAI, Azure OpenAI. Prompt engineering, tokens, contexto.</p>
+  </div>
+  <div class="unit-card fragment fade-up">
+    <p style="margin: 0;"><strong style="color: #00d4ff;">RAG</strong> — embeddings, pgvector/Pinecone, chunking, retrieval, reranking.</p>
+  </div>
+  <div class="unit-card fragment fade-up">
+    <p style="margin: 0;"><strong style="color: #00d4ff;">Agentes</strong> — function calling, LangGraph, tool use. Segurança: prompt injection.</p>
+  </div>
+  <div class="highlight-box fragment fade-up">
+    <p style="margin: 0; font-size: 17px !important;">🤖 <strong style="color: #00d4ff;">Projeto Q2:</strong> Chatbot RAG sobre seus documentos da faculdade (PDFs → busca → resposta com citação).</p>
+  </div>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 10: Q3 -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono" style="font-size: 16px; margin-bottom: 12px; color: #f97316;">Q3 · MÊS 7-9 — ARQUITETURA:</div>
+  <h2>Microsserviços + <span style="color: #f97316;">DevOps</span></h2>
+  <div class="unit-card fragment fade-up" style="border-left-color: #f97316 !important;">
+    <p style="margin: 0;"><strong style="color: #f97316;">Microsserviços</strong> — monólito → serviços. Saga, Outbox, event-driven.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #f97316 !important;">
+    <p style="margin: 0;"><strong style="color: #f97316;">Mensageria</strong> — Kafka ou RabbitMQ. Pub/sub, filas, dead letter.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #f97316 !important;">
+    <p style="margin: 0;"><strong style="color: #f97316;">Kubernetes</strong> — pods, services, deployments. Minikube local. CKA depois.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #f97316 !important;">
+    <p style="margin: 0;"><strong style="color: #f97316;">IaC + Observabilidade</strong> — Terraform, Prometheus, Grafana, OpenTelemetry.</p>
+  </div>
+  <div class="highlight-box-orange fragment fade-up">
+    <p style="margin: 0; font-size: 17px !important;">🏗️ <strong style="color: #f97316;">Projeto Q3:</strong> Decompor a API do Q1 em 3 microsserviços com Kafka + K8s + Terraform + dashboard Grafana.</p>
+  </div>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 11: Q4 -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono" style="font-size: 16px; margin-bottom: 12px; color: #a855f7;">Q4 · MÊS 10-12 — CARREIRA:</div>
+  <h2>Portfólio + <span style="color: #a855f7;">Entrevistas</span></h2>
+  <div class="unit-card fragment fade-up" style="border-left-color: #a855f7 !important;">
+    <p style="margin: 0;"><strong style="color: #a855f7;">Projeto final</strong> — AI Gateway simples: roteia perguntas entre 2 LLMs, cache semântico, controle de custo por token.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #a855f7 !important;">
+    <p style="margin: 0;"><strong style="color: #a855f7;">GitHub</strong> — 3 projetos com README profissional, diagramas, ADRs, testes com CI (GitHub Actions).</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #a855f7 !important;">
+    <p style="margin: 0;"><strong style="color: #a855f7;">LinkedIn</strong> — headline de arquiteto, posts técnicos semanais, networking com recrutadores.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #a855f7 !important;">
+    <p style="margin: 0;"><strong style="color: #a855f7;">Entrevistas</strong> — system design, behavioral (STAR), mock interviews. Candidatar a 5 vagas/semana.</p>
+  </div>
+  <div class="highlight-box fragment fade-up" style="border-left-color: #a855f7 !important;">
+    <p style="margin: 0; font-size: 17px !important;">🎯 <strong style="color: #a855f7;">Meta Q4:</strong> 3 entrevistas técnicas agendadas. Oferta de júnior/pleno em arquitetura.</p>
+  </div>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 12: HARD SKILLS MAP -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono blue" style="font-size: 16px; margin-bottom: 12px;">MAPA DE SKILLS — PRIORIDADE:</div>
+  <h2>O que <span>Estudar</span> Primeiro</h2>
+  <div class="grid-2">
+    <div class="unit-card fragment fade-up" style="border-left-color: #ef4444 !important;">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #ef4444;">🔴 CRÍTICO (Q1)</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">AWS · Docker · REST/OpenAPI · Git avançado</p>
+    </div>
+    <div class="unit-card fragment fade-up">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #00d4ff;">🔵 ALTO (Q2)</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">Python · OpenAI API · RAG · embeddings · LangGraph</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #f97316 !important;">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #f97316;">🟠 MÉDIO (Q3)</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">Kafka · Kubernetes · Terraform · OAuth2/OIDC</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #a855f7 !important;">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #a855f7;">🟣 DIFERENCIAL (Q4)</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">Certificação AWS SA · FinOps · AI Gateway · Inglês</p>
+    </div>
+  </div>
+  <p class="fragment fade-up" style="font-size: 18px !important; margin-top: 12px;">💡 Não estude tudo de uma vez. <strong style="color: #fff;">Uma trilha por trimestre</strong>, projeto aplicado a cada uma.</p>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 13: SOFT SKILLS -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono orange" style="font-size: 16px; margin-bottom: 12px;">NÃO-TECNICO — TÃO IMPORTANTE QUANTO:</div>
+  <h2>Soft Skills de <span style="color: #f97316;">Arquiteto</span></h2>
+  <div class="unit-card fragment fade-up">
+    <p style="margin: 0;"><strong style="color: #00d4ff;">Traduzir para o negócio</strong> — explicar trade-offs técnicos para não-técnicos. Sua base de IHC ajuda aqui.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #f97316 !important;">
+    <p style="margin: 0;"><strong style="color: #f97316;">Escrever ADRs</strong> — Architecture Decision Records. Documentar o porquê das decisões.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+    <p style="margin: 0;"><strong style="color: #22c55e;">Comunidade técnica</strong> — 1 artigo/mês no Medium ou dev.to. 1 meetup/trimestre.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #ef4444 !important;">
+    <p style="margin: 0;"><strong style="color: #ef4444;">Inglês técnico</strong> — ler docs, assistir talks. Meta: intermediário até Q2, avançado até Q4.</p>
+  </div>
+  <div class="highlight-box-orange fragment fade-up">
+    <p style="margin: 0; font-size: 17px !important;">🎤 Dica: explique em voz alta o que aprendeu. Se não consegue simplificar, não entendeu.</p>
+  </div>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 14: MÉTRICAS -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono green" style="font-size: 16px; margin-bottom: 12px;">COMO MEDIR O PROGRESSO:</div>
+  <h2>Métricas <span style="color: #22c55e;">Mensais</span></h2>
+  <div class="grid-2">
+    <div class="unit-card fragment fade-up" style="border-left-color: #22c55e !important;">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #22c55e;">Código</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">≥ 20 commits/mês no GitHub pessoal</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #00d4ff !important;">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #00d4ff;">Conteúdo</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">1 artigo publicado/mês</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #f97316 !important;">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #f97316;">Certificação</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">1 certificação a cada 3 meses</p>
+    </div>
+    <div class="unit-card fragment fade-up" style="border-left-color: #a855f7 !important;">
+      <p style="margin: 0; font-size: 18px;"><strong style="color: #a855f7;">Networking</strong></p>
+      <p style="margin: 4px 0 0 0; font-size: 14px;">10 conexões relevantes/mês no LinkedIn</p>
+    </div>
+  </div>
+  <div class="highlight-box-green fragment fade-up">
+    <p style="margin: 0; font-size: 17px !important;">📊 <strong style="color: #22c55e;">Revisão mensal:</strong> último domingo do mês, 1h. O que avancei? O que travou? Ajustar plano.</p>
+  </div>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 15: PRÓXIMOS 30 DIAS -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content">
+  <div class="mono red" style="font-size: 16px; margin-bottom: 12px;">COMEÇAR AGORA — PRÓXIMOS 30 DIAS:</div>
+  <h2>Primeiros <span style="color: #ef4444;">Passos</span></h2>
+  <div class="unit-card fragment fade-up" style="border-left-color: #ef4444 !important;">
+    <p style="margin: 0;"><strong style="color: #ef4444;">Semana 1:</strong> Criar conta AWS free tier + instalar Docker + VS Code + Node 22.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #ef4444 !important;">
+    <p style="margin: 0;"><strong style="color: #ef4444;">Semana 2:</strong> Curso "AWS Cloud Practitioner Essentials" (free na AWS).</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #ef4444 !important;">
+    <p style="margin: 0;"><strong style="color: #ef4444;">Semana 3:</strong> Dockerizar uma API REST. Rodar local com compose.</p>
+  </div>
+  <div class="unit-card fragment fade-up" style="border-left-color: #ef4444 !important;">
+    <p style="margin: 0;"><strong style="color: #ef4444;">Semana 4:</strong> Publicar no GitHub com README + diagrama + OpenAPI (Swagger).</p>
+  </div>
+  <div class="highlight-box-red fragment fade-up">
+    <p style="margin: 0; font-size: 17px !important;">🚀 <strong style="color: #ef4444;">Compromisso:</strong> 10h/semana, 30 dias, 1 projeto no ar. Depois disso, o resto vira hábito.</p>
+  </div>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+<!-- SLIDE 16: ENCERRAMENTO -->
+<section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px; min-height: 720px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+<div class="slide-content" style="align-items: center !important; text-align: center !important; justify-content: center !important;">
+  <div class="mono blue" style="font-size: 18px; margin-bottom: 20px;">ENCERRAMENTO</div>
+  <h2 style="font-size: 40px !important; border-left: none !important; padding-left: 0 !important;">Arquiteto não nasce.<br>É <span class="blue">construído</span> — projeto<br>a <span class="orange">projeto</span>.</h2>
+  <div style="height: 2px; width: 100px; background: linear-gradient(90deg, #00d4ff, #f97316); margin: 30px 0;"></div>
+  <div class="fragment fade-up" style="margin-top: 20px;">
+    <h1 style="font-size: 43px !important; letter-spacing: 5px;">BORA <span class="blue">PRA CIMA</span>!</h1>
+  </div>
+  <div class="mono" style="font-size: 14px; color: #475569; margin-top: 24px;">MENTORIA · MOISÉS SAMPAIO · 2026-2027</div>
+</div>
+<div class="slide-footer"></div>
+</div></script></section>
+
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      var isLight = document.documentElement.classList.contains('light');
+
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default',
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+        ],
+
+      	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		mermaid: {
+			theme: isLight ? 'default' : 'dark',
+		},
+
+		customcontrols: {
+			controls: [
+			]
+		},
+      };
+
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":1280,"height":720,"margin":0.04,"controls":true,"progress":true,"slideNumber":true,"transition":"slide","transitionSpeed":"default"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+    <script>
+      function forcePrintStyles() {
+        document.querySelectorAll('.reveal .slides section').forEach(function(s) {
+          s.style.setProperty('opacity', '1', 'important');
+          s.style.setProperty('visibility', 'visible', 'important');
+          s.style.setProperty('display', 'block', 'important');
+          s.style.setProperty('transition', 'none', 'important');
+          s.style.setProperty('overflow', 'visible', 'important');
+        });
+        document.querySelectorAll('.reveal .slides section .fragment').forEach(function(f) {
+          f.style.setProperty('opacity', '1', 'important');
+          f.style.setProperty('visibility', 'visible', 'important');
+          f.style.setProperty('transform', 'none', 'important');
+          f.style.setProperty('transition', 'none', 'important');
+        });
+      }
+      function clearPrintStyles() {
+        document.querySelectorAll('.reveal .slides section').forEach(function(s) {
+          s.style.removeProperty('opacity');
+          s.style.removeProperty('visibility');
+          s.style.removeProperty('display');
+          s.style.removeProperty('transition');
+          s.style.removeProperty('overflow');
+        });
+        document.querySelectorAll('.reveal .slides section .fragment').forEach(function(f) {
+          f.style.removeProperty('opacity');
+          f.style.removeProperty('visibility');
+          f.style.removeProperty('transform');
+          f.style.removeProperty('transition');
+        });
+      }
+      window.addEventListener('beforeprint', forcePrintStyles);
+      window.addEventListener('afterprint', clearPrintStyles);
+      if (window.location.search.indexOf('print-pdf') !== -1) {
+        var checkReveal = setInterval(function() {
+          if (window.Reveal && window.Reveal.getState) {
+            clearInterval(checkReveal);
+            forcePrintStyles();
+          }
+        }, 100);
+      }
+    </script>
+  </body>
+</html>
