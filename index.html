@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intent Code — Aulas</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+      :root {
+        --bg: #020617;
+        --surface: #0f172a;
+        --border: #1e293b;
+        --text: #94a3b8;
+        --title: #ffffff;
+        --cyan: #00d4ff;
+        --green: #22c55e;
+        --orange: #f97316;
+        --purple: #a855f7;
+        --muted: #475569;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Urbanist', sans-serif;
+        padding: 48px 24px 80px;
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .mono {
+        font-family: 'JetBrains Mono', monospace;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+
+      .eyebrow {
+        font-size: 14px;
+        color: var(--cyan);
+        margin: 0 0 12px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(32px, 6vw, 52px);
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--title);
+        line-height: 1.1;
+      }
+
+      h1 span { color: var(--cyan); }
+
+      .rule {
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--cyan), var(--orange));
+        margin: 28px 0 36px;
+      }
+
+      .subtitle {
+        margin: 0;
+        font-size: 18px;
+        color: var(--text);
+      }
+
+      h2 {
+        font-size: 14px;
+        color: var(--muted);
+        font-family: 'JetBrains Mono', monospace;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin: 48px 0 16px;
+        font-weight: 500;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        display: block;
+        background: var(--surface);
+        border: 2px solid var(--border);
+        border-left: 4px solid var(--cyan);
+        border-radius: 8px;
+        padding: 20px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.25s ease, border-color 0.25s ease;
+      }
+
+      .card:hover {
+        border-color: var(--cyan);
+        transform: translateX(5px);
+      }
+
+      .card .tag {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--cyan);
+      }
+
+      .card h3 {
+        margin: 10px 0 6px;
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--title);
+        text-transform: uppercase;
+      }
+
+      .card p {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.5;
+        color: var(--text);
+      }
+
+      .card .meta {
+        margin-top: 14px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 1px;
+        color: var(--muted);
+      }
+
+      .card.green { border-left-color: var(--green); }
+      .card.green:hover { border-color: var(--green); }
+      .card.green .tag { color: var(--green); }
+
+      .card.orange { border-left-color: var(--orange); }
+      .card.orange:hover { border-color: var(--orange); }
+      .card.orange .tag { color: var(--orange); }
+
+      .card.purple { border-left-color: var(--purple); }
+      .card.purple:hover { border-color: var(--purple); }
+      .card.purple .tag { color: var(--purple); }
+
+      .card.disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        border-left-color: var(--muted);
+      }
+
+      .card.disabled:hover {
+        border-color: var(--border);
+        transform: none;
+      }
+
+      footer {
+        margin-top: 56px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow mono">MENTORIA · INTENT CODE</p>
+      <h1>Todas as <span>Aulas</span></h1>
+      <div class="rule"></div>
+      <p class="subtitle">
+        Comece pela aula 0 — o plano de 12 meses — e siga pela trilha do Q1.
+      </p>
+
+      <h2>Aula 0 — Base</h2>
+      <div class="grid">
+        <a class="card" href="0/index.html">
+          <span class="tag">Aula 0 · Plano geral</span>
+          <h3>De Júnior a Arquiteto</h3>
+          <p>Plano de 1 ano em 4 trilhas: análise de mercado, gap e os 12 meses.</p>
+          <div class="meta">Deck reveal.js · 16 slides</div>
+        </a>
+      </div>
+
+      <h2>Q1 · Mês 1 — Contratos de API (REST + OpenAPI)</h2>
+      <div class="grid">
+        <a class="card green" href="Q1/M1/aula01/index.html">
+          <span class="tag">Aula 01</span>
+          <h3>REST + OpenAPI</h3>
+          <p>
+            Restrições de REST, URIs e verbos, status codes, idempotência e o
+            desenho da API em <code>.http</code> antes da spec.
+          </p>
+          <div class="meta">Deck · 12 slides · exercício: exercicio-aula01.http</div>
+        </a>
+
+        <a class="card green" href="Q1/M1/aula01/exemplo-api/README.md">
+          <span class="tag">Aula 01 · Prática</span>
+          <h3>API de exemplo</h3>
+          <p>
+            Projeto Node + Express: endpoints prontos, 4 endpoints por fazer e o
+            exemplo de idempotência comentado.
+          </p>
+          <div class="meta">exemplo-api/ · npm install &amp;&amp; npm start</div>
+        </a>
+
+        <div class="card disabled">
+          <span class="tag">Aula 02</span>
+          <h3>Node + Express</h3>
+          <p>Implementar a spec com validação e erros problem+json.</p>
+          <div class="meta">Em breve</div>
+        </div>
+
+        <div class="card disabled">
+          <span class="tag">Aula 03</span>
+          <h3>Versionamento + Erros</h3>
+          <p>Contrato evolutivo, idempotência e testes de contrato.</p>
+          <div class="meta">Em breve</div>
+        </div>
+
+        <div class="card disabled">
+          <span class="tag">Aula 04</span>
+          <h3>Docker + Checkpoint</h3>
+          <p>Dockerizar a API e fechar o primeiro mês.</p>
+          <div class="meta">Em breve</div>
+        </div>
+      </div>
+
+      <h2>Q1 · Mês 2 e 3 — Cloud</h2>
+      <div class="grid">
+        <div class="card disabled">
+          <span class="tag">Mês 2</span>
+          <h3>AWS Essencial</h3>
+          <p>EC2, S3, Lambda, RDS e a conta free tier em uso.</p>
+          <div class="meta">Em breve</div>
+        </div>
+        <div class="card disabled">
+          <span class="tag">Mês 3</span>
+          <h3>Docker + Deploy</h3>
+          <p>Compose, ECR e o deploy da API do projeto Q1.</p>
+          <div class="meta">Em breve</div>
+        </div>
+      </div>
+
+      <footer>Intent Code · Moisés Sampaio · 2026-2027</footer>
+    </main>
+  </body>
+</html>

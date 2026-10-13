@@ -46,3 +46,6 @@ Ao longo da mentoria, o objetivo e fortalecer:
 ## Estrutura do Repositorio
 
 Os materiais estao organizados por modulos e exemplos praticos para apoiar a aplicacao direta no dia a dia.
+
+Comece pela pagina [`index.html`](index.html), que lista todas as aulas — da aula 0 (plano de 1 ano) ate o Q1.
+

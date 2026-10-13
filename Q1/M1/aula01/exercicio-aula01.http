@@ -1,0 +1,151 @@
+### ==========================================================================
+### AULA 01 — Exercício: desenho da API com REST Client
+### Ferramenta: extensão "REST Client" (VS Code), httpYac ou IntelliJ HTTP Client
+###
+### Pré-requisito: subir a API de exemplo
+###   cd Q1/M1/aula01/exemplo-api && npm install && npm start
+###
+### COMO USAR ESTE ARQUIVO:
+###   PARTE 1 — endpoints PRONTOS: execute e confira o status esperado.
+###   PARTE 2 — EXERCÍCIO: endpoints pedidos aqui e AINDA NÃO implementados
+###             na API. Eles falham -> é o trabalho da aula criá-los em
+###             exemplo-api/src/routes/notas.js seguindo o contrato descrito.
+###   PARTE 3 — idempotência na prática.
+### ==========================================================================
+
+@baseUrl = http://localhost:3000
+@versao = v1
+### Troque pelo "id" devolvido na resposta do POST (Parte 1.3)
+@idNota = ID_DA_NOTA_AQUI
+
+### ==========================================================================
+### PARTE 1 — ENDPOINTS PRONTOS (status esperado em cada request)
+### ==========================================================================
+
+### 1.1) LISTA paginada -> esperado 200
+GET {{baseUrl}}/{{versao}}/notas?page=1&limit=10
+Accept: application/json
+
+### 1.2) DETALHE -> esperado 200 (ou 404 se o id estiver errado)
+GET {{baseUrl}}/{{versao}}/notas/{{idNota}}
+Accept: application/json
+
+### 1.3) CRIAR -> esperado 201 + header Location
+### Copie o "id" da resposta para a variável @idNota lá em cima.
+POST {{baseUrl}}/{{versao}}/notas
+Content-Type: application/json
+Accept: application/json
+
+{
+  "titulo": "Estudar REST",
+  "conteudo": "URIs em plural, verbos HTTP, status codes.",
+  "tags": ["rest", "q1"]
+}
+
+### 1.4) PAYLOAD INVÁLIDO -> esperado 400 application/problem+json
+POST {{baseUrl}}/{{versao}}/notas
+Content-Type: application/json
+Accept: application/problem+json
+
+{
+  "titulo": ""
+}
+
+### 1.5) SUBSTITUIR (PUT, idempotente) -> esperado 200
+PUT {{baseUrl}}/{{versao}}/notas/{{idNota}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "titulo": "Estudar REST (revisado)",
+  "conteudo": "PUT substitui o recurso inteiro.",
+  "tags": ["rest"]
+}
+
+### 1.6) REMOVER -> esperado 204 (repita: a 2ª vez dá 404 e está tudo bem)
+DELETE {{baseUrl}}/{{versao}}/notas/{{idNota}}
+Accept: application/json
+
+### ==========================================================================
+### PARTE 2 — EXERCÍCIO: ENDPOINTS AINDA NÃO IMPLEMENTADOS
+### Hoje todos devolvem 404 "Não existe rota ..." (ou ignoram o filtro).
+### Implemente em exemplo-api/src/routes/notas.js e reexecute aqui até
+### bater o status e o corpo descritos.
+### ==========================================================================
+
+### 2.1) FILTRO NA LISTAGEM
+### ARMADILHA: a API devolve 200, mas IGNORA status e tag — olhe o corpo:
+### se as notas não mudaram, o contrato não foi cumprido.
+### CONTRATO:
+###   200 -> { data, page, limit, total } apenas com notas com aquele
+###          status E que tenham a tag; total = total APÓS o filtro
+###   400 -> status fora de [aberta, concluida]
+GET {{baseUrl}}/{{versao}}/notas?status=aberta&tag=rest&page=1&limit=10
+Accept: application/json
+
+### 2.2) ATUALIZAÇÃO PARCIAL (PATCH)
+### PATCH ≠ PUT: PUT substitui tudo; PATCH muda só o que veio no corpo.
+### CONTRATO:
+###   200 -> nota atualizada, campos ausentes mantidos
+###   400 -> body vazio ou campo desconhecido
+###   404 -> nota não existe
+PATCH {{baseUrl}}/{{versao}}/notas/{{idNota}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "status": "concluida"
+}
+
+### 2.3) SUB-RECURSO — leitura
+### Sub-recurso = item dentro de um item: /notas/1/etiquetas
+### CONTRATO:
+###   200 -> { "data": ["rest", "q1"] }
+###   404 -> nota não existe
+GET {{baseUrl}}/{{versao}}/notas/{{idNota}}/etiquetas
+Accept: application/json
+
+### 2.4) SUB-RECURSO — criação
+### CONTRATO:
+###   201 -> etiqueta criada + header Location /v1/notas/{id}/etiquetas/{nome}
+###   400 -> nome vazio ou com mais de 30 caracteres
+###   404 -> nota não existe
+###   409 -> etiqueta já existe nessa nota
+POST {{baseUrl}}/{{versao}}/notas/{{idNota}}/etiquetas
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nome": "api"
+}
+
+### ==========================================================================
+### PARTE 3 — IDEMPOTÊNCIA NA PRÁTICA (POST + Idempotency-Key)
+### Execute a 3.1 duas vezes com a MESMA chave e compare:
+###   1ª -> 201 Created
+###   2ª -> 201 Created + header Idempotency-Replayed: true + MESMO id
+### Ou seja: retry não duplica a nota. Veja o comentário em
+### exemplo-api/src/idempotency.js para a explicação completa.
+### ==========================================================================
+
+### 3.1) CRIAR COM CHAVE IDEMPOTENTE -> 201 (na 2ª execução: replay)
+POST {{baseUrl}}/{{versao}}/notas
+Content-Type: application/json
+Accept: application/json
+Idempotency-Key: aula01-chave-0001
+
+{
+  "titulo": "Nota protegida contra retry",
+  "conteudo": "Reenviar com a mesma chave não duplica.",
+  "tags": ["idempotencia"]
+}
+
+### ==========================================================================
+### CHECKLIST DO EXERCÍCIO (marque tudo antes de ir para o openapi.yaml):
+### [ ] 1.1 a 1.6 verdes (200/201/204/400)
+### [ ] 2.1 filtra de verdade (total muda conforme o filtro)
+### [ ] 2.2 PATCH atualiza só o campo enviado
+### [ ] 2.3 e 2.4 sub-recurso com 200/201/400/404/409
+### [ ] 3.1 repetido devolve Idempotency-Replayed: true
+### [ ] Nenhum erro devolvido como 200
+### ==========================================================================
