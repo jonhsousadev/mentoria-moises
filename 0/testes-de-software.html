@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teste de Software — TDD com Python e FastAPI</title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="css/mattropolis.css" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+    <style>
+      .reveal {
+        color: #e2e8f0;
+        font-family: Arial, sans-serif;
+      }
+
+      .reveal .slides section {
+        background: #020617;
+        box-sizing: border-box;
+        height: 100%;
+        padding: 38px 64px;
+        text-align: left;
+      }
+
+      .reveal h1,
+      .reveal h2,
+      .reveal h3 {
+        color: #fff;
+        font-weight: 700;
+        text-transform: none;
+      }
+
+      .reveal h1 {
+        font-size: 2.2em;
+      }
+
+      .cover-content {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+      }
+
+      .cover-content h1 {
+        font-size: 3.8em !important;
+        line-height: 1.1;
+        margin: 0 0 0.35em;
+        max-width: 1100px;
+      }
+
+      .cover-content p {
+        font-size: 1.05em !important;
+        max-width: 1000px;
+      }
+
+      .cover-content .eyebrow {
+        font-size: 0.65em !important;
+      }
+
+      .reveal h2 {
+        border-left: 8px solid #00d4ff;
+        font-size: 1.55em;
+        padding-left: 20px;
+      }
+
+      .reveal p,
+      .reveal li {
+        color: #cbd5e1;
+        font-size: 0.78em;
+        line-height: 1.4;
+      }
+
+      .reveal ul {
+        display: block;
+      }
+
+      .eyebrow {
+        color: #00d4ff !important;
+        font-family: monospace;
+        font-size: 0.55em !important;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .accent {
+        color: #00d4ff;
+      }
+
+      .card {
+        background: #0f172a;
+        border: 1px solid #263449;
+        border-left: 5px solid #00d4ff;
+        border-radius: 8px;
+        margin: 14px 0;
+        padding: 12px 18px;
+      }
+
+      .card p {
+        margin: 0;
+      }
+
+      .columns {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .reveal pre {
+        background: #0f172a;
+        border: 1px solid #263449;
+        border-radius: 8px;
+        box-shadow: none;
+        margin: 14px 0;
+        width: 100%;
+      }
+
+      .reveal pre code {
+        max-height: 440px;
+        padding: 16px;
+        font-size: 0.57em;
+        line-height: 1.4;
+      }
+
+      .reveal .progress {
+        color: #00d4ff;
+      }
+
+      .reveal a {
+        color: #00d4ff;
+      }
+
+      .case-list {
+        margin: 0;
+        padding-left: 1.15em;
+      }
+
+      .case-list li {
+        margin-bottom: 0.3em;
+      }
+
+      .case-value {
+        color: #fff;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <div class="cover-content">
+            <p class="eyebrow">Teste de Software · Um novo dia de prática</p>
+            <h1>Qualidade começa<br />com <span class="accent">feedback</span></h1>
+            <p class="fragment fade-up">Verificação, validação e uma introdução ao TDD com Python, pytest e FastAPI.</p>
+            <p class="eyebrow fragment fade-up">Nosso primeiro foco: testes unitários</p>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Roteiro</p>
+          <h2>O que vamos aprender?</h2>
+          <div class="card fragment fade-up"><p>Entender a diferença entre <strong>verificação</strong> e <strong>validação</strong>.</p></div>
+          <div class="card fragment fade-up"><p>Conhecer níveis e tipos de teste, começando pelos <strong>unitários</strong>.</p></div>
+          <div class="card fragment fade-up"><p>Praticar o ciclo <strong>Red → Green → Refactor</strong>.</p></div>
+          <div class="card fragment fade-up"><p>Escrever exemplos com <strong>pytest</strong> e testar uma rota <strong>FastAPI</strong>.</p></div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Qualidade</p>
+          <h2>Verificação × Validação</h2>
+          <div class="columns">
+            <div class="card fragment fade-up">
+              <h3>Verificação</h3>
+              <p><strong>Estamos construindo o produto corretamente?</strong></p>
+              <p>Compara o software com especificações, regras e critérios definidos.</p>
+              <p>Exemplos: revisão, análise estática e testes automatizados.</p>
+            </div>
+            <div class="card fragment fade-up" style="border-left-color: #f97316;">
+              <h3>Validação</h3>
+              <p><strong>Estamos construindo o produto certo?</strong></p>
+              <p>Confere se a solução atende à necessidade real de quem vai usá-la.</p>
+              <p>Exemplos: aceite, demonstração e avaliação com usuários.</p>
+            </div>
+          </div>
+          <p class="fragment fade-up">Testes ajudam na verificação e podem apoiar a validação, mas não substituem a conversa sobre o problema.</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">Vocabulário</p>
+          <h2>Níveis e tipos de teste</h2>
+          <div class="columns">
+            <div class="fragment fade-up">
+              <div class="card"><p><strong>Unitário:</strong> uma função ou unidade isolada.</p></div>
+              <div class="card"><p><strong>Integração:</strong> componentes colaborando, como serviço e banco.</p></div>
+              <div class="card"><p><strong>Sistema / ponta a ponta:</strong> fluxos completos do sistema.</p></div>
+              <div class="card"><p><strong>Aceitação:</strong> critérios e necessidades de negócio.</p></div>
+            </div>
+            <div class="fragment fade-up">
+              <div class="card" style="border-left-color: #22c55e;"><p><strong>Funcional:</strong> comportamentos e regras do produto.</p></div>
+              <div class="card" style="border-left-color: #22c55e;"><p><strong>Não funcional:</strong> desempenho, segurança, acessibilidade e confiabilidade.</p></div>
+              <div class="card" style="border-left-color: #22c55e;"><p><strong>Regressão:</strong> comportamentos existentes continuam funcionando.</p></div>
+              <div class="card" style="border-left-color: #22c55e;"><p><strong>Caixa-preta / caixa-branca:</strong> técnicas para escolher casos de teste.</p></div>
+            </div>
+          </div>
+          <p class="fragment fade-up">São classificações diferentes e complementares. Hoje começamos pela unidade menor: o teste unitário.</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">Ponto de partida</p>
+          <h2>Por que começar por testes unitários?</h2>
+          <div class="card fragment fade-up"><p>Executam rápido e dão feedback enquanto a regra ainda está fresca.</p></div>
+          <div class="card fragment fade-up"><p>Exercitam uma unidade pequena, com dependências controladas.</p></div>
+          <div class="card fragment fade-up"><p>Deixam exemplos executáveis do comportamento esperado.</p></div>
+          <div class="card fragment fade-up" style="border-left-color: #f97316;"><p>Não provam que o sistema inteiro funciona; integração e ponta a ponta também terão seu espaço.</p></div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Escolha dos casos</p>
+          <h2>O que testar primeiro?</h2>
+          <div class="card fragment fade-up">
+            <p><strong>Caso esperado (caminho feliz):</strong> entrada válida e comum. Ex.: preço <span class="case-value">100</span>, desconto <span class="case-value">10%</span> → resultado <span class="case-value">90</span>.</p>
+          </div>
+          <div class="card fragment fade-up" style="border-left-color: #22c55e;">
+            <p><strong>Fronteiras / edge cases:</strong> valores nos limites e imediatamente ao redor deles, onde erros de comparação aparecem.</p>
+            <ul class="case-list">
+              <li><span class="case-value">0%</span> e <span class="case-value">100%</span> → válidos; resultados <span class="case-value">100</span> e <span class="case-value">0</span>.</li>
+              <li><span class="case-value">0%</span> e <span class="case-value">100%</span> são inclusivos; <span class="case-value">-1%</span> e <span class="case-value">101%</span> não são.</li>
+            </ul>
+          </div>
+          <div class="card fragment fade-up" style="border-left-color: #ef4444;">
+            <p><strong>Entradas inválidas:</strong> dados ausentes, malformados ou fora do contrato da função. Ex.: preço <span class="case-value">-1</span> ou desconto <span class="case-value">101%</span> → erro claro (<code>ValueError</code>); na API, resposta <code>422</code>.</p>
+          </div>
+          <p class="fragment fade-up">Não existe uma ordem rígida para todo projeto: no TDD, comece com um comportamento pequeno — geralmente o caminho feliz — e acrescente fronteiras e inválidos conforme o contrato e o risco.</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">Test-Driven Development</p>
+          <h2>O teste guia a implementação</h2>
+          <div class="card fragment fade-up">
+            <p><strong>TDD</strong> é uma prática de desenvolvimento: descrevemos um comportamento com um teste antes de implementar a solução.</p>
+          </div>
+          <ul>
+            <li class="fragment fade-up">Não é apenas escrever testes depois do código.</li>
+            <li class="fragment fade-up">Não é perseguir uma porcentagem de cobertura.</li>
+            <li class="fragment fade-up">Não elimina todos os bugs; ajuda a revelar falhas e proteger mudanças.</li>
+          </ul>
+          <p class="fragment fade-up">Um teste deve expressar um comportamento observável, não detalhes internos sem importância.</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">O ciclo</p>
+          <h2><span style="color: #ef4444;">Red</span> → <span style="color: #22c55e;">Green</span> → <span class="accent">Refactor</span></h2>
+          <div class="columns">
+            <div class="card fragment fade-up" style="border-left-color: #ef4444;">
+              <h3>1 · Red</h3>
+              <p>Escreva um teste pequeno para um comportamento ainda não atendido. Rode e confirme que ele falha pelo motivo esperado.</p>
+            </div>
+            <div class="card fragment fade-up" style="border-left-color: #22c55e;">
+              <h3>2 · Green</h3>
+              <p>Implemente somente o necessário para fazer o teste passar. Rode a suíte novamente.</p>
+            </div>
+          </div>
+          <div class="card fragment fade-up">
+            <h3>3 · Refactor</h3>
+            <p>Melhore a estrutura sem alterar o comportamento. Os testes devem continuar verdes.</p>
+          </div>
+          <p class="fragment fade-up">Repita em passos curtos. Um vermelho sem motivo claro não é feedback útil: investigue-o.</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">Exemplo unitário · primeiro o teste</p>
+          <h2>Desconto: qual comportamento queremos?</h2>
+          <pre class="fragment fade-up"><code class="language-python">import pytest
+
+from app.services.discount import calculate_discount
+
+
+@pytest.mark.parametrize(
+    ("price", "percentage", "expected"),
+    [
+        (100, 10, 90),
+        (100, 0, 100),
+        (100, 100, 0),
+    ],
+)
+def test_calculates_discount(price, percentage, expected):
+    result = calculate_discount(price, percentage)
+
+    assert result == pytest.approx(expected)</code></pre>
+          <p class="fragment fade-up">O primeiro teste descreve o caminho feliz; os outros cobrem fronteiras importantes. Execute com <code>pytest -q</code>.</p>
+          <p class="fragment fade-up">🟥 Se a função ainda não existe, a execução falha. Se existe como rascunho, a asserção deve falhar.</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">Green · primeira regra atendida</p>
+          <h2>Implemente o mínimo</h2>
+          <pre class="fragment fade-up"><code class="language-python">def calculate_discount(price: float, percentage: float) -> float:
+    return round(price * (1 - percentage / 100), 2)</code></pre>
+          <div class="card fragment fade-up"><p>Os testes do caminho feliz e das fronteiras passam. Ainda não especificamos entradas inválidas: o próximo teste vai conduzir essa mudança.</p></div>
+          <p class="fragment fade-up">Rode a suíte depois de cada passo. Verde confirma somente os comportamentos que os testes verificam.</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">Próximo ciclo · Red</p>
+          <h2>Especifique entradas inválidas</h2>
+          <pre class="fragment fade-up"><code class="language-python">import pytest
+
+
+@pytest.mark.parametrize(
+    ("price", "percentage"),
+    [
+        (-1, 10),
+        (100, -1),
+        (100, 101),
+    ],
+)
+def test_rejects_invalid_values(price, percentage):
+    with pytest.raises(ValueError):
+        calculate_discount(price, percentage)</code></pre>
+          <p class="fragment fade-up">Rode <code>pytest -q</code>: o teste fica vermelho porque a função ainda aceita esses valores. Agora implemente somente a validação necessária.</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">Green · validação da regra</p>
+          <h2>Faça os testes passarem</h2>
+          <pre class="fragment fade-up"><code class="language-python">def calculate_discount(price: float, percentage: float) -> float:
+    if price &lt; 0:
+        raise ValueError("O preço não pode ser negativo")
+    if not 0 &lt;= percentage &lt;= 100:
+        raise ValueError("O percentual deve estar entre 0 e 100")
+
+    return round(price * (1 - percentage / 100), 2)</code></pre>
+          <p class="fragment fade-up">Rode todos os testes. Com tudo verde, refatore se houver uma melhoria clara sem mudar o comportamento observável.</p>
+          <p class="fragment fade-up">Cada caso novo entrou porque havia um requisito — não para inflar a cobertura.</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">FastAPI · contrato da rota</p>
+          <h2>Conecte a regra à API</h2>
+          <pre class="fragment fade-up"><code class="language-python">from fastapi import FastAPI
+from pydantic import BaseModel, Field
+
+from app.services.discount import calculate_discount
+
+app = FastAPI()
+
+
+class DiscountRequest(BaseModel):
+    price: float = Field(ge=0)
+    percentage: float = Field(ge=0, le=100)
+
+
+@app.post("/discount")
+def discount(request: DiscountRequest) -> dict[str, float]:
+    final_price = calculate_discount(request.price, request.percentage)
+    return {"final_price": final_price}</code></pre>
+          <p class="fragment fade-up">O modelo valida os dados de entrada da requisição; a função mantém a regra de negócio testável de forma isolada.</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">FastAPI · teste de rota</p>
+          <h2>Uma camada acima da unidade</h2>
+          <pre class="fragment fade-up"><code class="language-python">from fastapi.testclient import TestClient
+
+from app.main import app
+
+client = TestClient(app)
+
+
+def test_discount_endpoint_returns_final_price():
+    response = client.post(
+        "/discount",
+        json={"price": 100, "percentage": 10},
+    )
+
+    assert response.status_code == 200
+    assert response.json() == {"final_price": 90.0}
+
+
+def test_discount_endpoint_rejects_invalid_percentage():
+    response = client.post(
+        "/discount",
+        json={"price": 100, "percentage": 150},
+    )
+
+    assert response.status_code == 422</code></pre>
+          <p class="fragment fade-up">O <code>TestClient</code> exercita a rota, a validação da requisição e a resposta HTTP. É um teste de API/integração, não um teste unitário isolado.</p>
+          <p class="fragment fade-up">Use-o depois de entender a regra com testes unitários rápidos e focados. Instalação para a prática: <code>python -m pip install fastapi pytest httpx</code>.</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">Prática e encerramento</p>
+          <h2>Começamos pequeno. Evoluímos com confiança.</h2>
+          <div class="card fragment fade-up"><p>1. Escolha uma regra de negócio simples e escreva um teste unitário que falhe.</p></div>
+          <div class="card fragment fade-up"><p>2. Faça-o passar com o mínimo de código; depois cubra fronteiras e entradas inválidas.</p></div>
+          <div class="card fragment fade-up"><p>3. Refatore com os testes verdes; em seguida, teste o contrato da rota FastAPI.</p></div>
+          <p class="fragment fade-up"><strong>Hoje:</strong> testes unitários primeiro. <strong>Depois:</strong> integração, API, sistema e aceitação conforme o risco e a necessidade.</p>
+          <p class="eyebrow fragment fade-up">Zoom: Ctrl + clique · mova o ponteiro até a borda para deslocar · Esc para sair</p>
+        </section>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true,
+        hash: true,
+        progress: true,
+        slideNumber: true,
+        transition: "slide",
+        zoomKey: "ctrl",
+        zoomLevel: 2,
+        plugins: [RevealZoom, RevealHighlight],
+      });
+    </script>
+  </body>
+</html>
