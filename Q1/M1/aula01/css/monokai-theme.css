@@ -1,0 +1,297 @@
+/* ========================================================== */
+/* TEMA LIMPO (FINAL: FUNDO EXTREMAMENTE ESCURO #121212) */
+
+/* ========================================================== */
+
+/* --- 0. PALETA MONOKAI CLÁSSICA --- */
+/* Ciano: #66D9EF, Verde: #A6E22E, Roxo: #AE81FF, Laranja: #FD971F, Pink: #F92672 */
+/* Comentário: #75715E, Fundo: #272822 */
+
+
+/* ---------------------------------------------------------- */
+/* 1. DEFINIÇÃO DE CORES E BACKGROUND GERAL                     */
+/* ---------------------------------------------------------- */
+
+.reveal,
+.reveal section {
+  /* NOVO FUNDO: Preto Profundo (#121212) */
+  --r-background-color: #121212 !important;
+  background-color: #121212 !important;
+
+  /* FONTE PADRÃO */
+
+  /* Cor Principal do Texto (Quase branco) */
+  --r-main-color: #F8F8F2 !important;
+  color: #F8F8F2 !important;
+
+  /* Cores de Destaque para links: CIANO */
+  --r-link-color: #66D9EF !important;
+  --r-link-hover-color: #FD971F !important;
+  /* Hover Laranja */
+
+  /* Cores de Código (Fundo sutilmente mais claro) */
+  --r-code-background-color: #383838;
+  --r-code-font-size: 0.8em;
+
+}
+
+/* ---------------------------------------------------------- */
+/* 2. TIPOGRAFIA: CORES MONOKAI CLÁSSICAS E FORMATOS          */
+/* ---------------------------------------------------------- */
+
+/* HIERARQUIA DE CORES MONOKAI (Ciano > Verde > Roxo) */
+
+/* H1: CIANO - UPPERCASE */
+.reveal h1 {
+  color: #66D9EF !important;
+  text-transform: uppercase !important;
+}
+
+/* H2: VERDE - Capitalize */
+.reveal h2 {
+  color: #A6E22E !important;
+  text-transform: capitalize !important;
+}
+
+/* H3: ROXO - Capitalize */
+.reveal h3 {
+  color: #AE81FF !important;
+  text-transform: capitalize !important;
+}
+
+/* Negrito: LARANJA */
+.reveal strong {
+  color: #FD971F !important;
+  font-weight: bold !important;
+}
+
+/* Itálico: ROXO (suave) */
+.reveal em {
+  color: #AE81FF !important;
+  font-style: italic;
+}
+
+/* Negrito + Itálico: PINK/MAGENTA (Máximo Destaque) */
+.reveal strong em,
+.reveal em strong {
+  color: #F92672 !important;
+  font-style: italic;
+  font-weight: bold !important;
+}
+
+/* ---------------------------------------------------------- */
+/* 3. ESTILIZAÇÃO DE CITAÇÕES (BLOCKQUOTES)                   */
+/* ---------------------------------------------------------- */
+
+.reveal blockquote {
+  background-color: #383838;
+  border-left: 8px solid #A6E22E !important;
+  /* Borda VERDE */
+  padding: 15px 25px !important;
+  margin: 20px 0 !important;
+  text-align: left !important;
+  box-shadow: none;
+}
+
+.reveal blockquote p {
+  color: #F8F8F2 !important;
+  margin: 0 !important;
+  font-style: italic;
+}
+
+
+/* ---------------------------------------------------------- */
+/* 4. ALINHAMENTO GERAL E LISTAS RECUAJADAS (BULLET PROMPT)   */
+/* ---------------------------------------------------------- */
+
+.reveal .slides section>section {
+  text-align: left !important;
+  max-width: 95% !important;
+  margin: 0 auto !important;
+}
+
+.reveal p,
+.reveal table {
+  text-align: left !important;
+}
+
+.reveal ul {
+  list-style-type: none;
+  text-align: left !important;
+  margin-left: 2em !important;
+  padding-left: 0.5em !important;
+  width: auto;
+}
+
+.reveal ul li {
+  list-style-type: none !important;
+  margin-bottom: 0.7em !important;
+  padding-left: 0;
+}
+
+.reveal ul li::before {
+  /* Bullet Customizado: BARRAS DE COMENTÁRIO (//) CIANO */
+  content: "//";
+  color: #66D9EF !important;
+  /* Ciano/Azul */
+  font-weight: bold;
+  font-size: 1.0em;
+  /* Tamanho do texto */
+  line-height: 1.5;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em !important;
+}
+
+/* ========================================================== */
+/* 5. ESTILIZAÇÃO DE CÓDIGO (HIGHLIGHT.JS)                    */
+/* ========================================================== */
+
+/* 5.1 TAMANHO E FUNDO DO BLOCO DE CÓDIGO */
+.reveal pre code {
+  font-size: 28px !important;
+  color: #F8F8F2 !important;
+  padding: 15px 20px !important;
+  border-radius: 5px;
+  line-height: 1.5 !important;
+}
+
+/* 5.2 COLORIZAÇÃO DE SINTAXE (MONOKAI) */
+
+/* Comentários */
+.reveal .hljs-comment,
+.reveal .hljs-quote {
+  color: #75715E !important;
+  /* Cinza Suave */
+}
+
+/* Palavras-chave (Keywords, Import, Return) */
+.reveal .hljs-keyword,
+.reveal .hljs-selector-tag,
+.reveal .hljs-literal,
+.reveal .hljs-doctag,
+.reveal .hljs-title.class,
+.reveal .hljs-type {
+  color: #F92672 !important;
+  /* Pink/Magenta */
+}
+
+/* Strings (Textos entre aspas) */
+.reveal .hljs-string,
+.reveal .hljs-regexp,
+.reveal .hljs-attribute,
+.reveal .hljs-symbol,
+.reveal .hljs-bullet,
+.reveal .hljs-addition {
+  color: #E6DB74 !important;
+  /* Amarelo/Vainilla (Alternativa ao Verde Monokai) */
+}
+
+/* Nomes de Funções */
+.reveal .hljs-title.function {
+  color: #A6E22E !important;
+  /* Verde */
+}
+
+/* Variáveis, Nomes de Classes */
+.reveal .hljs-variable,
+.reveal .hljs-template-variable,
+.reveal .hljs-tag,
+.reveal .hljs-name,
+.reveal .hljs-built_in,
+.reveal .hljs-title {
+  color: #FD971F !important;
+  /* Laranja */
+}
+
+/* Números, Booleanos */
+.reveal .hljs-number {
+  color: #AE81FF !important;
+  /* Roxo */
+}
+
+/* Constantes, Definições */
+.reveal .hljs-deletion,
+.reveal .hljs-selector-id,
+.reveal .hljs-selector-class,
+.reveal .hljs-link {
+  color: #66D9EF !important;
+  /* Ciano/Azul */
+}
+
+/* Default (se nenhuma classe for aplicada) */
+.reveal .hljs-attr,
+.reveal .hljs-section {
+  color: #F8F8F2 !important;
+  /* Quase branco */
+}
+
+/* bearded-vibe.css */
+
+.reveal {
+  /* Define a fonte base para todo o texto (padrão é 28px) */
+  --r-main-font-size: 36px;
+
+  /* Outras customizações do seu tema já devem estar aqui: */
+  --r-background-color: #1E1E1E;
+  --r-main-color: #D4D4D4;
+  /* ... outras regras ... */
+}
+
+/* Opcional: Aumentar o tamanho do texto dentro das tabelas, se estiver pequeno */
+.reveal table,
+.reveal th,
+.reveal td {
+  font-size: 0.8em;
+  /* Ajusta o tamanho da fonte das células e tabelas */
+}
+
+/* ---------------------------------------------------------- */
+/* 2. TIPOGRAFIA: CORES MONOKAI CLÁSSICAS E FORMATOS          */
+/* ---------------------------------------------------------- */
+
+/* HIERARQUIA DE CORES MONOKAI (Ciano > Verde > Roxo) */
+
+/* H1: CIANO - UPPERCASE */
+.reveal h1 {
+  color: #66D9EF !important;
+  text-transform: uppercase !important;
+  /* NOVO: Reduzido para ser grande, mas não dominante (ex: 1.7em) */
+  font-size: 2em !important;
+}
+
+/* H2: VERDE - Capitalize */
+.reveal h2 {
+  color: #A6E22E !important;
+  text-transform: capitalize !important;
+  /* NOVO: Reduzido para ser claro (ex: 1.3em) */
+  font-size: 1.3em !important;
+}
+
+/* H3: ROXO - Capitalize */
+.reveal h3 {
+  color: #AE81FF !important;
+  text-transform: capitalize !important;
+  /* NOVO: Próximo ao tamanho do corpo, para subtítulos (ex: 1.1em) */
+  font-size: 1.1em !important;
+}
+
+/* Negrito: LARANJA */
+.reveal strong {
+  color: #FD971F !important;
+  font-weight: bold !important;
+}
+
+/* Itálico: ROXO (suave) */
+.reveal em {
+  color: #AE81FF !important;
+  font-style: italic;
+}
+
+/* Negrito + Itálico: PINK/MAGENTA (Máximo Destaque) */
+.reveal strong em,
+.reveal em strong {
+  color: #F92672 !important;
+  font-style: italic;
+  font-weight: bold !important;
+}
