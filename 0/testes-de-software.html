@@ -132,6 +132,14 @@
         color: #00d4ff;
       }
 
+      html.zoomed .reveal {
+        cursor: grab;
+      }
+
+      html.zoomed.is-panning .reveal {
+        cursor: grabbing;
+      }
+
       .case-list {
         margin: 0;
         padding-left: 1.15em;
@@ -398,7 +406,7 @@ def test_discount_endpoint_rejects_invalid_percentage():
           <div class="card fragment fade-up"><p>2. Faça-o passar com o mínimo de código; depois cubra fronteiras e entradas inválidas.</p></div>
           <div class="card fragment fade-up"><p>3. Refatore com os testes verdes; em seguida, teste o contrato da rota FastAPI.</p></div>
           <p class="fragment fade-up"><strong>Hoje:</strong> testes unitários primeiro. <strong>Depois:</strong> integração, API, sistema e aceitação conforme o risco e a necessidade.</p>
-          <p class="eyebrow fragment fade-up">Zoom: Ctrl + clique · mova o ponteiro até a borda para deslocar · Esc para sair</p>
+          <p class="eyebrow fragment fade-up">Zoom: Ctrl + clique · arraste com o botão esquerdo para mover · Esc para sair</p>
         </section>
       </div>
     </div>
@@ -415,6 +423,63 @@ def test_discount_endpoint_rejects_invalid_percentage():
         zoomKey: "ctrl",
         zoomLevel: 2,
         plugins: [RevealZoom, RevealHighlight],
+      });
+
+      let isPanning = false;
+      let pointerX = 0;
+      let pointerY = 0;
+
+      document.addEventListener("mousedown", (event) => {
+        if (
+          !document.documentElement.classList.contains("zoomed") ||
+          event.button !== 0 ||
+          event.ctrlKey
+        ) {
+          return;
+        }
+
+        isPanning = true;
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+        document.documentElement.classList.add("is-panning");
+        event.preventDefault();
+      });
+
+      document.addEventListener("mousemove", (event) => {
+        if (!isPanning) return;
+
+        const transform = document.body.style.transform;
+        const match = transform.match(
+          /^translate\((-?[\d.]+)px,\s*(-?[\d.]+)px\)\s*scale\(([\d.]+)\)$/
+        );
+        if (!match) return;
+
+        const scale = Number(match[3]);
+        const maxTranslateX = -window.innerWidth * (scale - 1);
+        const maxTranslateY = -window.innerHeight * (scale - 1);
+        const translateX = Math.min(
+          0,
+          Math.max(maxTranslateX, Number(match[1]) + event.clientX - pointerX)
+        );
+        const translateY = Math.min(
+          0,
+          Math.max(maxTranslateY, Number(match[2]) + event.clientY - pointerY)
+        );
+        document.body.style.transform =
+          `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+        event.preventDefault();
+      });
+
+      function stopPanning() {
+        isPanning = false;
+        document.documentElement.classList.remove("is-panning");
+      }
+
+      document.addEventListener("mouseup", stopPanning);
+      document.addEventListener("keyup", (event) => {
+        if (event.key === "Escape") stopPanning();
       });
     </script>
   </body>
